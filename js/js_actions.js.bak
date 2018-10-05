@@ -1,0 +1,175 @@
+function windowLoader(){
+	$(window).bind('beforeunload', function() {	
+		scrollTop();
+		//headerLoaderMessage('Loading...');
+		jQuery('#content').addClass("fadeLoader");			
+	});
+}
+
+function headerLoaderMessage(message){		
+	jQuery.blockUI({ 
+		message: (message), 
+		fadeIn: 700, 
+		showOverlay: false, 
+		centerY: false, 
+		css: {
+			position:'absolute',border: '1px solid #C1D779',width:'100%',top:'0',left:'-12px',padding:'5px',backgroundColor:'#EFFEB9',font:'25px', color: '#70A300'
+		} 
+	}); 
+}
+
+function succuss(message){		
+	jQuery.blockUI({ 
+		message: (message), 
+		fadeIn: 700, 
+		fadeOut: 700, 
+		timeout: 6000, 
+		showOverlay: false, 
+		centerY: false, 
+		css: {
+			position:'absolute',border: '1px solid #C1D779',width:'100%',top:'0',left:'-12px',padding:'5px',backgroundColor:'#EFFEB9',font:'25px', color: '#70A300' 
+		} 
+	}); 
+}
+
+function error(message){ 	
+	jQuery.blockUI({ 
+		message: (message), 
+		fadeIn: 700, 
+		fadeOut: 700, 
+		timeout: 6000, 
+		showOverlay: false, 
+		centerY: false, 
+		css: {
+			position:'absolute',border: '1px solid #C1D779',width:'100%',top:'0',left:'-12px',padding:'5px',backgroundColor:'#FAD5CF',font:'25px', color: 'red'
+		} 
+	}); 
+}
+
+function alertmsg(message){		
+	jQuery.blockUI({ 
+		message: (message), 
+		fadeIn: 700, 
+		fadeOut: 700, 
+		timeout: 6000, 
+		showOverlay: false, 
+		centerY: false, 
+		css: {
+
+			position:'absolute',border: '1px solid #C1D779',width:'100%',top:'0',left:'-12px',padding:'5px',backgroundColor:'#FFE9AD',font:'25px', color: '#70A300'
+		} 
+	}); 
+}
+
+function loader_show(){
+	jQuery.blockUI({
+		message:'<span class="processing"></span>', 
+		css: {
+			position:'fixed',border: 'none',width:'34%',top:'45%',left:'31%',padding:'1px',backgroundColor:'none','-webkit-border-radius':'10px','-moz-border-radius': '10px', opacity:'1.0',font:'30px', color: '#000' 
+		}
+	});
+}
+
+function loader_unshow(){
+	jQuery.unblockUI(); 
+}
+
+function blockUI_object(msgobj){
+	jQuery.blockUI({ 
+		message: msgobj, 
+		css: { 
+			textAlign:'left',position:'fixed',border: '2px solid #70A300',width:'98%',top:'0%',left:'0%',padding:'10px',backgroundColor:'#FFF','-webkit-border-radius':'10px','-moz-border-radius': '10px', opacity:'1.0',font:'30px', color: '#000', minHeight: '100px'
+		} 
+	});
+}
+
+function blockUI_divid(divid){
+	jQuery.blockUI({
+		message: jQuery('#'+divid+''),
+		css: { 
+			textAlign:'left',position:'fixed',border: '2px solid #70A300',width:'98%',top:'0%',left:'0%',padding:'10px',backgroundColor:'#FFF','-webkit-border-radius':'10px','-moz-border-radius': '10px', opacity:'1.0',font:'30px', color: '#000', minHeight: '100px'
+		} 
+	});
+}
+
+function BLOCKUI_DIVID_LARGE(divid){
+	jQuery.blockUI({
+		message: jQuery('#'+divid+''),
+		css: { 
+			textAlign:'left',position:'fixed',border: '5px solid #70A300',width:'55%',top:'40%',left:'20%',padding:'10px',backgroundColor:'#FFF','-webkit-border-radius':'10px','-moz-border-radius': '10px', opacity:'1.0',font:'30px', color: '#000' 
+		} 
+	});
+}
+
+function BLOCKUI_MSG_OBJECT(msgobj){
+	jQuery.blockUI({ 
+		message: msgobj, 
+		css: { 
+			textAlign:'left',position:'fixed',border: '2px solid #70A300',width:'98%',top:'0%',left:'0%',padding:'10px',backgroundColor:'#FFF','-webkit-border-radius':'10px','-moz-border-radius': '10px', opacity:'1.0',font:'30px', color: '#000', minHeight: '100px'
+		}
+	});
+}
+
+function showAttributes(div,divid){	
+	jQuery('.allGraph').hide();	
+	if($('#'+divid+'').attr('checked')) {
+		jQuery('#'+div+'').show();
+	}
+}
+
+function delete_action(){
+	if(confirm("This Action cannot be undone. Are you sure you want to perform this action?")){		 
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function scrollTop(){
+	$("html, body").animate({ scrollTop: 0 }, "slow");
+}
+function scrollBottom(){
+	$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+}
+
+function scrollToSelected(divid){
+	$('html, body').animate({ scrollTop: $('#'+divid+'').position().top }, 1000);
+}
+
+function ShowSubmitTextGlobal(textid,cancelid,formid){
+	jQuery('#'+formid+'').submit(function(e){
+		var pass_msg = jQuery('#'+formid+'').valid();
+		if(pass_msg == false){
+			return false;
+		} else {
+			scrollTop();
+			headerLoaderMessage('Loading...Wait');
+			jQuery('#'+textid+'').attr({'type':'button'});
+			jQuery('#'+textid+'').addClass('fadeLoader');
+			jQuery('#'+textid+'').val('Please...Wait');
+			jQuery('#'+cancelid+'').hide();
+			return true;
+		}
+	});
+}
+
+jQuery(document).ready(function(){
+	jQuery("#profile-login").hover(function(){		
+		jQuery(".notification").remove();
+	});
+	jQuery("#profile-login").hover(function(){
+		jQuery('#main-profile').show();
+	},function(){
+		jQuery('#main-profile').hide();
+	});
+});
+
+
+
+$(document).on('click', '.browse', function(){
+  var file = $(this).parent().parent().parent().find('.file');
+  file.trigger('click');
+});
+$(document).on('change', '.file', function(){
+  $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+});

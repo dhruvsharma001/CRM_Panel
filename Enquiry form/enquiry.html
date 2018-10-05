@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Send enquiry - Electrofriends.com</title>
+<script language="javascript">
+function checkField(f1, tbl1, tbl2)
+{
+	if((f1.name.value=="") )
+	{
+	  document.getElementById(tbl1).style.display = '';
+      return false;
+	 }
+	else if((f1.email.value=="") )
+    {
+	  document.getElementById(tbl2).style.display = '';
+      return false;
+    }
+	
+	
+	else return true;
+}
+</script>
+</head>
+
+<body>
+<form name="f1" method="post" action="sendemail.php">
+<table width="522" border="0" align="center" cellpadding="0" cellspacing="0" style="font-family:Arial, Helvetica, sans-serif; font-size:10pt;">
+  <tr>
+    <td width="16" height="25">&nbsp;</td>
+    <td width="96">Name *</td>
+    <td width="10" height="25"><strong>:</strong></td>
+    <td width="163" height="25"><input name="name" type="text" id="name" /></td>
+    <td width="237" height="25">
+   
+    <table width="233" border="0" cellspacing="0" cellpadding="0" id="tbl1" style="display:none; color:#FF0000">
+  <tr>
+    <td>Enter the Name</td>
+  </tr>
+</table>
+
+    
+    </td>
+  </tr>
+  <tr>
+    <td height="25">&nbsp;</td>
+    <td height="25">Email Id *</td>
+    <td height="25"><strong>:</strong></td>
+    <td height="25"><input name="email" type="text" id="email" /></td>
+    <td height="25">
+    
+    <table width="233" border="0" cellspacing="0" cellpadding="0" id="tbl2" style="display:none; color:#FF0000">
+  <tr>
+    <td>Enter the Email Id</td>
+  </tr>
+</table>
+    
+    </td>
+  </tr>
+  <tr>
+    <td height="25">&nbsp;</td>
+    <td height="25">Phone No</td>
+    <td height="25"><strong>:</strong></td>
+    <td height="25"><input name="phone" type="text" id="phone" /></td>
+    <td height="25">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="25">&nbsp;</td>
+    <td height="25">Subject</td>
+    <td height="25"><strong>:</strong></td>
+    <td height="25"><input name="sub" type="text" id="sub" /></td>
+    <td height="25">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="95">&nbsp;</td>
+    <td height="95">Message</td>
+    <td height="95"><strong>:</strong></td>
+    <td height="95" colspan="2"><textarea name="message" cols="30" rows="5" id="message">&nbsp;</textarea></td>
+  </tr>
+  <tr>
+    <td height="25" colspan="2">&nbsp;</td>
+    <td height="25">&nbsp;</td>
+    <td height="25" colspan="2"><input name="" type="submit" value="Submit" onclick="return checkField(f1,'tbl1','tbl2');" /> &nbsp;
+    <input name="input4" type="reset" value="Reset" /></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

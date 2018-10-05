@@ -1,0 +1,6 @@
+CREATE TABLE `content_rating` (
+  `cont_id` int(4) NOT NULL,
+  `nov` int(5) NOT NULL,
+  `rating` int(5) NOT NULL,
+  UNIQUE KEY `cont_id` (`cont_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
